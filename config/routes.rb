@@ -28,6 +28,7 @@ ResqueWeb::Engine.routes.draw do
   resources :stats, :controller => "stats", :only => [:index] do
     collection do
       get :resque
+      get :keys
     end
   end
 

@@ -22,5 +22,5 @@
     <% end %>
   </table>
 
-  <%= pagination :start => start, :total => size %>
+  <%= pagination(:use_route => 'keys_stats', :start => start, :total => size) %>
 <% end %>

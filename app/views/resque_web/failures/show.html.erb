@@ -17,4 +17,4 @@
   <% end %>
 </ul>
 
-<%= pagination :start => failure_start_at, :total => failure_size unless params[:class] %>
+<%= pagination(:use_route => 'failures', :start => failure_start_at, :total => failure_size unless params[:class]) %>

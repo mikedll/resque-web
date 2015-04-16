@@ -50,15 +50,22 @@ module ResqueWeb
       start    = options[:start] || 1
       per_page = options[:per_page] || PER_PAGE
       total    = options[:total] || 0
+      if options[:use_route].nil?
+        url_params = params.slice(:action, :controller, :id)
+      else
+        url_params = params.slice(:id)
+        url_params.merge!({ :only_path => true, :use_route => options[:use_route] })
+      end
       return if total < per_page
+
 
       markup = ""
       if start - per_page >= 0
-        markup << link_to(raw("&laquo; less"), params.merge(:start => start - per_page), :class => 'btn less')
+        markup << link_to(raw("&laquo; less"), engine_url.url_for(url_params.merge(:start => start - per_page)), :class => 'btn less')
       end
 
       if start + per_page <= total
-        markup << link_to(raw("more &raquo;"), params.merge(:start => start + per_page), :class => 'btn more')
+        markup << link_to(raw("more &raquo;"), engine_url.url_for(url_params.merge(:start => start + per_page)), :class => 'btn more')
       end
 
       content_tag :p, raw(markup), :class => 'pagination'

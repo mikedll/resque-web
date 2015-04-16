@@ -27,4 +27,4 @@
     <% end %>
   </table>
 
-  <%= pagination :start => queue_start_at, :total => queue_size %>
+  <%= pagination(:use_route => 'queues', :start => queue_start_at, :total => queue_size) %>
