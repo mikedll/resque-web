@@ -6,7 +6,7 @@
   </tr>
   <% queue_names.each do |queue_name| %>
   <tr>
-    <td class="queue"><%= link_to queue_name, queue_path(queue_name) %></td>
+    <td class="queue"><%= link_to queue_name, engine_url.queue_path(queue_name) %></td>
     <td class="size"><%= queue_size(queue_name) %></td>
     <td class="failure"><%= failed_queue_info(queue_name) %></td>
   </tr>

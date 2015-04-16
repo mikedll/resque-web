@@ -8,12 +8,12 @@
     </tr>
     <% worker_hosts.each do |hostname, workers| %>
     <tr>
-      <td class="queue"><%= link_to hostname, worker_path(hostname), :class => 'queue' %></td>
+      <td class="queue"><%= link_to hostname, engine_url.worker_path(hostname), :class => 'queue' %></td>
       <td class="size"><%= workers.size %></td>
     </tr>
     <% end %>
     <tr class="failed">
-      <td class="queue failed"><%= link_to "all workers", worker_path('all'), :class => 'queue' %></td>
+      <td class="queue failed"><%= link_to "all workers", engine_url.worker_path('all'), :class => 'queue' %></td>
       <td class="size"><%= Resque::WorkerRegistry.all.size %></td>
     </tr>
   </table>

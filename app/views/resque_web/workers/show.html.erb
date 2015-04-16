@@ -16,7 +16,7 @@
       <td class="where"><%= host %>:<%= pid %></td>
       <td class="queues">
         <% queues.split(',').each do |queue_name| %>
-        <%= link_to queue_name, queue_path(queue_name), :class => 'label label-info' %>
+        <%= link_to queue_name, engine_url.queue_path(queue_name), :class => 'label label-info' %>
         <% end %>
       </td>
       <td class="process">

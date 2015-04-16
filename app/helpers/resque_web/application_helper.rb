@@ -3,13 +3,20 @@ module ResqueWeb
 
     PER_PAGE = 20
 
+    # I don't know why I had to put this here. Should be able to
+    # include the proper url helper in the views. 4/16/15 -mikedll
+    def engine_url
+      ResqueWeb::Engine.app.url_helpers
+    end
+
     def tabs
-      t = {'overview' => ResqueWeb::Engine.app.url_helpers.overview_path,
-       'working'  => ResqueWeb::Engine.app.url_helpers.working_index_path,
-       'failures' => ResqueWeb::Engine.app.url_helpers.failures_path,
-       'queues' => ResqueWeb::Engine.app.url_helpers.queues_path,
-       'workers' => ResqueWeb::Engine.app.url_helpers.workers_path,
-       'stats' => ResqueWeb::Engine.app.url_helpers.stats_path
+      t = {
+        'overview' => engine_url.overview_path,
+        'working'  => engine_url.working_index_path,
+        'failures' => engine_url.failures_path,
+        'queues' => engine_url.queues_path,
+        'workers' => engine_url.workers_path,
+        'stats' => engine_url.stats_path
       }
       ResqueWeb::Plugins.plugins.each do |p|
         p.tabs.each { |tab| t.merge!(tab) }

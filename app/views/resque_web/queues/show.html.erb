@@ -1,6 +1,6 @@
   <h1>Pending jobs on <span class='hl'><%= params[:id] %></span></h1>
 
-  <%= form_tag(queue_path(params[:id]), :method => :delete, :class => 'remove-queue') do %>
+  <%= form_tag(engine_url.queue_path(params[:id]), :method => :delete, :class => 'remove-queue') do %>
     <%= submit_tag "Remove Queue", :class => 'btn btn-danger', :data => { :confirm => "Are you absolutely sure? This cannot be undone." } %>
   <% end %>
 

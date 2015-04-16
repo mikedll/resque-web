@@ -12,20 +12,20 @@ module ResqueWeb
     # remove an individual job from the failure queue
     def destroy
       Resque::Failure.remove(params[:id])
-      redirect_to failures_path(redirect_params)
+      redirect_to resque_web.failures_path(redirect_params)
     end
 
     # destroy all jobs from the failure queue
     def destroy_all
       queue = params[:queue] || 'failed'
       Resque::Failure.clear(queue)
-      redirect_to failures_path(redirect_params)
+      redirect_to engine_url.failures_path(redirect_params)
     end
 
     # retry an individual job from the failure queue
     def retry
       reque_single_job(params[:id])
-      redirect_to failures_path(redirect_params)
+      redirect_to engine_url.failures_path(redirect_params)
     end
 
     # retry all jobs from the failure queue
@@ -35,7 +35,7 @@ module ResqueWeb
       else
         (Resque::Failure.count-1).downto(0).each { |id| reque_single_job(id) }
       end
-      redirect_to failures_path(redirect_params)
+      redirect_to engine_url.failures_path(redirect_params)
     end
 
     private

@@ -10,8 +10,7 @@ module ResqueWeb
 
     def destroy
       Resque.remove_queue(params[:id])
-      redirect_to queues_path
+      redirect_to engine_url.queues_path
     end
-
   end
 end
