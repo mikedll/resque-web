@@ -4,7 +4,7 @@ module ResqueWeb
     subtabs :resque, :redis, :keys
 
     def index
-      redirect_to ResqueWeb::Engine.app.url_helpers.resque_stats_path
+      redirect_to engine_url.resque_stats_path
     end
 
     def resque

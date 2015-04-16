@@ -5,6 +5,10 @@ module ResqueWeb
 
     helper :all
 
+    def engine_url
+      ResqueWeb::Engine.app.url_helpers
+    end
+
     def self.subtabs(*tab_names)
       return defined?(@subtabs) ? @subtabs : [] if tab_names.empty?
       @subtabs = tab_names
