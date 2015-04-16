@@ -1,5 +1,5 @@
 module ResqueWeb
-  class QueuesController < ApplicationController
+  class QueuesController < ResqueWeb::ApplicationController
 
     def index
     end
@@ -12,5 +12,11 @@ module ResqueWeb
       Resque.remove_queue(params[:id])
       redirect_to engine_url.queues_path
     end
+
+    def clear
+      Resque.redis.del("queue:#{params[:id]}")
+      redirect_to engine_url.queue_path(params[:id])
+    end
+
   end
 end
