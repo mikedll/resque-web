@@ -29,7 +29,7 @@ module ResqueWeb
     end
 
     def current_tab
-      params[:controller].gsub(/resque_web\//, "#{root_path}")
+      params[:controller].gsub(/resque_web\//, "#{engine_url.root_path}")
     end
 
     def current_tab?(name)
