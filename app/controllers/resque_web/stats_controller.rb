@@ -1,9 +1,10 @@
 module ResqueWeb
   class StatsController < ResqueWeb::ApplicationController
+
     subtabs :resque, :redis, :keys
 
     def index
-      redirect_to action: "resque"
+      redirect_to ResqueWeb::Engine.app.url_helpers.resque_stats_path
     end
 
     def resque

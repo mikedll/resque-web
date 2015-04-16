@@ -25,7 +25,12 @@ ResqueWeb::Engine.routes.draw do
     end
   end
 
-  get '/stats' => "stats#index"
+  resources :stats, :controller => "stats", :only => [:index] do
+    collection do
+      get :resque
+    end
+  end
+
   get '/stats/:action',     :controller => :stats
   get '/stats/:action/:id', :controller => :stats, :constraints => {:id => id_pattern}, :as => :statistic
 
